@@ -9,12 +9,6 @@ namespace SpriteKind {
     export const Empaque = SpriteKind.create()
     export const Martillo = SpriteKind.create()
 }
-function ElPajaroVOlaraYtuNoPorQueNoTienesAlasYElSiYElTeDaSemillasQueTuNoTienes () {
-    animation.setAction(Pajaro, ActionKind.HavalyWakingFly)
-}
-function AnimacionDeArmaDeReparaBotYDeNadieMasDeNadieAbsolubtamenteNadieMas () {
-    animation.setAction(projectile2, ActionKind.DIe)
-}
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile2 = sprites.createProjectileFromSprite(img`
 . . . . . . . . . . . . . . . . 
@@ -111,26 +105,9 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.attachAnimation(projectile2, Animacion3)
     AnimacionDeArmaDeReparaBotYDeNadieMasDeNadieAbsolubtamenteNadieMas()
 })
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile2 = sprites.createProjectileFromSprite(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, Hero, 50, 0)
-})
+function AnimacionDeArmaDeReparaBotYDeNadieMasDeNadieAbsolubtamenteNadieMas () {
+    animation.setAction(projectile2, ActionKind.DIe)
+}
 function EmpiezaNivel () {
     scene.setTileMap(levels[SiguienteNivel])
     scene.setTile(1, img`
@@ -152,22 +129,22 @@ function EmpiezaNivel () {
 . . d d d . . . . . . . . . . . 
 `, true)
     scene.setTile(4, img`
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `, true)
     scene.setTile(14, img`
 8 8 8 8 8 a 8 c 8 8 8 8 8 8 8 8 
@@ -295,24 +272,6 @@ c 6 6 6 6 7 c c c c c c c 6 6 6
 c 6 6 6 6 6 c c c c c c 6 6 6 6 
 6 c c c c c c c c c c 6 6 6 6 6 
 `, false)
-    scene.setTile(13, img`
-c c c c c c c c c c c c c c c c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d 1 d 1 d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d 1 d d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d d d d c 
-c d d d d d d d d d d d d d d c 
-c c c c c c c c c c c c c c c c 
-`, false)
     scene.setTile(8, img`
 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 
 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 
@@ -361,6 +320,9 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     let Plastico: Sprite = null
     Plastico.destroy()
 })
+function ElPajaroVOlaraYtuNoPorQueNoTienesAlasYElSiYElTeDaSemillasQueTuNoTienes () {
+    animation.setAction(Pajaro, ActionKind.HavalyWakingFly)
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Hero.vy == 0) {
         Hero.vy = -150
@@ -584,7 +546,7 @@ f f 8 9 9 9 9 9 9 9 9 9 9 f f .
     animation.attachAnimation(Pajaro, Animacion2)
     ElPajaroVOlaraYtuNoPorQueNoTienesAlasYElSiYElTeDaSemillasQueTuNoTienes()
 })
-scene.onHitTile(SpriteKind.Empaque, 9, function (sprite) {
+scene.onHitTile(SpriteKind.Empaque, 4, function (sprite) {
     Pajaro.destroy()
 })
 controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -595,9 +557,9 @@ scene.onHitTile(SpriteKind.Player, 4, function (sprite) {
     scene.placeOnRandomTile(Hero, 12)
 })
 let Animacion2: animation.Animation = null
+let Pajaro: Sprite = null
 let Animacion3: animation.Animation = null
 let projectile2: Sprite = null
-let Pajaro: Sprite = null
 let levels: Image[] = []
 let SiguienteNivel = 0
 let Hero: Sprite = null
@@ -1492,13 +1454,13 @@ info.setLife(5)
 scene.cameraFollowSprite(Hero)
 SiguienteNivel = 0
 levels = [img`
-. . . . . . . . . . . . . . . . . . . . . . . d . . . . . d . . . . . . . . . . . . . . . . . . . 9 
-. . . . . . . . . . . . . . . . . . . . . . . d . . . . d d . . . . . . . . . . . . . . . . . . . 9 
-. . . . . d . . . . . . . . . . . . 7 . . . . d d d . . d d . . . . . . . d d . . . . . . . d . . 9 
-. 9 . . . d . . . . . . . . . . 7 . . . d . . d d d d . d d . . . . . d . d d . . . . d . . d . . 9 
-. . . . d d . . 7 7 d . . . 7 . . . . . 7 7 7 d d d d d d d . 7 7 7 7 7 d d d . . . . d d . d . . 9 
-. . . d 7 7 7 . . . d 7 7 . . . . . . d d . . 7 7 7 d d d 7 . 7 . . . d d 7 d . 1 . . d d d d . . 2 
-. . . d d d . . . . d d d . . d . . . d d . . d d d d d d d . . . . . d d d d . . . . d d d d . . 9 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4 
+. . . . . . . . . . . . . . . . . . 7 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4 
+. 9 . . . . . . . . . . . . . . 7 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4 
+. . . . . . . . 7 7 . . . . 7 . . . . . 7 7 7 . . . . . . . . 7 7 7 7 7 . . . . . . . . . . . . . 4 
+. . . . 7 7 7 . . . . 7 7 . . . . . . . . . . 7 7 7 . . . 7 . 7 . . . . . 7 . . 1 . . . . . . . . 2 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4 
 7 7 7 7 7 7 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
 `]
 EmpiezaNivel()
