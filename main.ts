@@ -316,10 +316,6 @@ scene.onHitTile(SpriteKind.Player, 12, function (sprite) {
 scene.onHitTile(SpriteKind.Player, 15, function (sprite) {
     game.over(false)
 })
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    let Plastico: Sprite = null
-    Plastico.destroy()
-})
 function ElPajaroVOlaraYtuNoPorQueNoTienesAlasYElSiYElTeDaSemillasQueTuNoTienes () {
     animation.setAction(Pajaro, ActionKind.HavalyWakingFly)
 }
@@ -1465,9 +1461,6 @@ levels = [img`
 `]
 EmpiezaNivel()
 controller.moveSprite(Hero, 100, 0)
-game.onUpdate(function () {
-	
-})
 forever(function () {
     music.playMelody("F C5 A E B G D C5 ", 130)
 })
