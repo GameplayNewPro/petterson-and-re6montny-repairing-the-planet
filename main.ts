@@ -29,26 +29,6 @@ scene.onHitTile(SpriteKind.Player, 9, function (sprite) {
 `, false)
     music.baDing.play()
 })
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile2 = sprites.createProjectileFromSprite(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . 5 5 5 5 5 5 . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, Hero, 50, 0)
-})
 function EmpiezaNivel () {
     scene.setTileMap(levels[SiguienteNivel])
     scene.setTile(1, img`
@@ -269,10 +249,31 @@ c c c c c c c c c c c c c c c c
 `, true)
     scene.placeOnRandomTile(Hero, 15)
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile2 = sprites.createProjectileFromSprite(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . 5 5 5 5 5 5 . . . . . 
+. . . . . 5 5 5 5 5 5 . . . . . 
+. . . . . 5 5 5 5 5 5 . . . . . 
+. . . . . 5 5 5 5 5 5 . . . . . 
+. . . . . 5 5 5 5 5 5 . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, Hero, 50, 0)
+})
 scene.onHitTile(SpriteKind.Player, 12, function (sprite) {
     scene.placeOnRandomTile(Hero, 14)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    let Plastico: Sprite = null
     Plastico.destroy()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -332,6 +333,10 @@ scene.onHitTile(SpriteKind.Player, 1, function (sprite) {
     Pajaro.setPosition(14, 22)
     Pajaro.setVelocity(50, 0)
 })
+controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation.setAction(Hero, ActionKind.Walking)
+    scene.cameraFollowSprite(Hero)
+})
 scene.onHitTile(SpriteKind.Player, 4, function (sprite) {
     scene.placeOnRandomTile(Hero, 12)
 })
@@ -339,7 +344,6 @@ let Pajaro: Sprite = null
 let projectile2: Sprite = null
 let levels: Image[] = []
 let SiguienteNivel = 0
-let Plastico: Sprite = null
 let Hero: Sprite = null
 scene.setBackgroundImage(img`
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 1 f f f f f f f f f f f 
@@ -1081,56 +1085,162 @@ scene.setBackgroundImage(img`
 game.showLongText("Aprieta \"A\" O \"Espacio\" o \"Enter\" para empezar", DialogLayout.Bottom)
 info.startCountdown(200)
 Hero = sprites.create(img`
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+. . . . . . . . . . . . . . . . 
+. . . . . . 2 2 2 . . . . . . . 
+. . . . . . . b . . . . . . . . 
+. . . . . 1 1 d 1 1 . . . . . . 
+. . . . . 1 f d 1 f . . . . . . 
+. . . . . d d f f d . . . . . . 
+. . . . . . . d . . . . c . c . 
+. d . . . d d d d d d . c c c . 
+. . d d d d c 2 c d d d d c . . 
+. d . . . d c c c d . . . c . . 
+. . . . . d c c c d . . . . . . 
+. . . . . b b b b b . . . . . . 
+. . . . b b b b b b b . . . . . 
+. . . . b c c c c c b . . . . . 
+. . . . b b b b b b b . . . . . 
+. . . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
-controller.moveSprite(Hero, 100, 0)
+let Animacion = animation.createAnimation(ActionKind.Walking, 50)
+Animacion.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . 2 2 2 . . . . . . . 
+. . . . . . . b . . . . . . . . 
+. . . . . 1 1 d 1 1 . . . . . . 
+. . . . . 1 f d 1 f . . . . . . 
+. . . . . d d f f d . . . . . . 
+. . . . . . . d . . . . c . c . 
+. d . . . d d d d d d . c c c . 
+. . d d d d c 2 c d d d d c . . 
+. d . . . d c c c d . . . c . . 
+. . . . . d c c c d . . . . . . 
+. . . . . b b b b b . . . . . . 
+. . . . b b b c b b b . . . . . 
+. . . . b b b c b b b . . . . . 
+. . . . b b b c b b b . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+Animacion.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . 2 2 . . . . . . . 
+. . . . . . . b . . . . . . . . 
+. . . . . 1 1 d 1 1 . . . . . . 
+. . . . . 1 f d 1 f . . . . . . 
+. . . . . d d f f d . . . . c . 
+. . . . . . . d . . . . . . c c 
+. d . . . d d d d d d . . c c . 
+. . d d d d c 2 c d d d d c . . 
+. d . . . d c c c d . . . . . . 
+. . . . . d c c c d . . . . . . 
+. . . . . b b b b b . . . . . . 
+. . . . b b b b c b b . . . . . 
+. . . . b b c c b b b . . . . . 
+. . . . b c b b b b b . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+Animacion.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . 2 . . . . . . . . 
+. . . . . . . b . . . . . . . . 
+. . . . . 1 1 d 1 1 . . . . . . 
+. . . . . 1 f d 1 f . . . . . . 
+. . . . . d d f f d . . . . c . 
+. . . . . . . d . . . . . . c c 
+. d . . . d d d d d d . . c c . 
+. . d d d d c 2 c d d d d c . . 
+. d . . . d c c c d . . . . . . 
+. . . . . d c c c d . . . . . . 
+. . . . . b b b b b . . . . . . 
+. . . . b b b b c b b . . . . . 
+. . . . b b c c b b b . . . . . 
+. . . . b c b b b b b . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+Animacion.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . 2 2 . . . . . . . . 
+. . . . . . . b . . . . . . . . 
+. . . . . 1 1 d 1 1 . . . . . . 
+. . . . . 1 f d 1 f . . . . . . 
+. . . . . d d f f d . . . . . . 
+. . . . . . . d . . . . . . . . 
+. d . . . d d d d d d . . . c c 
+. . d d d d c 2 c d d d d c c . 
+. d . . . d c c c d . . . . c c 
+. . . . . d c c c d . . . . . . 
+. . . . . b b b b b . . . . . . 
+. . . . b c b b b b b . . . . . 
+. . . . b b c c c b b . . . . . 
+. . . . b b b b b c b . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+Animacion.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . 2 . . . . . . . . 
+. . . . . . . b . . . . . . . . 
+. . . . . 1 1 d 1 1 . . . . . . 
+. . . . . 1 f d 1 f . . . . . . 
+. . . . . d d f f d . . . . c . 
+. . . . . . . d . . . . . . c c 
+. d . . . d d d d d d . . c c . 
+. . d d d d c 2 c d d d d c . . 
+. d . . . d c c c d . . . . . . 
+. . . . . d c c c d . . . . . . 
+. . . . . b b b b b . . . . . . 
+. . . . b b b b c b b . . . . . 
+. . . . b b c c b b b . . . . . 
+. . . . b c b b b b b . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+Animacion.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . 2 2 . . . . . . . 
+. . . . . . . b . . . . . . . . 
+. . . . . 1 1 d 1 1 . . . . . . 
+. . . . . 1 f d 1 f . . . . . . 
+. . . . . d d f f d . . c . c . 
+. . . . . . . d . . . . c c c . 
+. d . . . d d d d d d . . c . . 
+. . d d d d c 2 c d d d d c . . 
+. d . . . d c c c d . . . . . . 
+. . . . . d c c c d . . . . . . 
+. . . . . b b b b b . . . . . . 
+. . . . b b b b b b b . . . . . 
+. . . . b c c c c b b . . . . . 
+. . . . b b b b b b b . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+Animacion.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . 2 2 2 . . . . . . . 
+. . . . . . . b . . . . . . . . 
+. . . . . 1 1 d 1 1 . . . . . . 
+. . . . . 1 f d 1 f . . . . . . 
+. . . . . d d f f d . . . . c . 
+. . . . . . . d . . . . . . c c 
+. d . . . d d d d d d . . c c . 
+. . d d d d c 2 c d d d d c . . 
+. d . . . d c c c d . . . . . . 
+. . . . . d c c c d . . . . . . 
+. . . . . b b b b b . . . . . . 
+. . . . b c b b b b b . . . . . 
+. . . . b b c c c b b . . . . . 
+. . . . b b b b b c b . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+animation.attachAnimation(Hero, Animacion)
 Hero.ay = 350
 info.setLife(5)
-Plastico = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . f f f f f f f . . . . 
-. . . f f 2 2 2 2 2 2 2 f f . . 
-. . f 2 2 2 2 2 2 2 2 2 2 2 f . 
-. . f 2 2 2 2 2 2 2 2 2 2 2 f . 
-. f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-. f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-. f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-. f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-. f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-. f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-. f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-. . f 2 2 2 2 2 2 2 2 2 2 2 f . 
-. . f 2 2 2 2 2 2 2 2 2 2 2 f . 
-. . . f f 2 2 2 2 2 2 2 f f . . 
-. . . . . f f f f f f f . . . . 
-`, SpriteKind.Enemy)
-Plastico.vy = 350
-Plastico.setPosition(160, 104)
-Plastico.setVelocity(-100, 0)
 scene.cameraFollowSprite(Hero)
 SiguienteNivel = 0
 levels = [img`
 . . . . . . . . . f . . . . . . . . . . . . . d . . . . . d . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . d . . . . d d . . . . . . . . . . . . . . . . . . . . 
 . . . . . d . . . . . . . . . . . . . . . . . d d d . . d d . . . . . . . d d . . . . . . . d . . . 
-. . . . 7 d . . . . . . . . . . . . . . d . . d d d d . d d . . . . . d . d d . . . . d . . d . . . 
+. . . . . d . . . . . . . . . . . . . . d . . d d d d . d d . . . . . d . d d . . . . d . . d . . . 
 . . . . d d . . . . d . . . . . . . . . d . . d d d d d d d . . . . . d d d d . . . . d d . d . . . 
-. . . d d d 7 . . . d d d . . . . . . d d . . d d d d d d d . . . . . d d d d . 1 . . d d d d . . 2 
+. . . d d d . . . . d d d . . . . . . d d . . d d d d d d d . . . . . d d d d . 1 . . d d d d . . 2 
 . . . d d d . . . . d d d . . d . . . d d . . d d d d d d d . . . . . d d d d . . . . d d d d . . . 
 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
 `, img`
@@ -1153,6 +1263,7 @@ f . . d d d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
 `]
 EmpiezaNivel()
+controller.moveSprite(Hero, 100, 0)
 game.onUpdate(function () {
 	
 })
