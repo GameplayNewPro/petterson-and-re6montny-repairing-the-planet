@@ -331,7 +331,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onHitTile(SpriteKind.Player, 2, function (sprite) {
     SiguienteNivel += 1
     if (SiguienteNivel == levels.length) {
-        game.showLongText("Hiciste TU Mision Pero Esto No Ha Terminado Continuara Este No es mi ultimo mensaje Good Bye.", DialogLayout.Bottom)
+        game.showLongText("Hiciste TU Mision Pero Esto No Ha Terminado Continuara Este No es mi ultimo mensaje Good Bye.", DialogLayout.Center)
         game.over(true)
     } else {
         EmpiezaNivel()
@@ -932,7 +932,7 @@ f f f f f f f f f f f f f f b b b b b b b b b b b b b b b b b b b b b b b b b b 
 f f f f f f f f f f f f b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
 f f f f f f f f f f f f b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
 `)
-game.showLongText("Y le daron un misión de reparar la tierra", DialogLayout.Bottom)
+game.showLongText("Y le dieron una misión de reparar la tierra", DialogLayout.Bottom)
 scene.setBackgroundImage(img`
 d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d 
 d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d 
@@ -1467,4 +1467,7 @@ EmpiezaNivel()
 controller.moveSprite(Hero, 100, 0)
 game.onUpdate(function () {
 	
+})
+forever(function () {
+    music.playMelody("F C5 A E B G D C5 ", 130)
 })
