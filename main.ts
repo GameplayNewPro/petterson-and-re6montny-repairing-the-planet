@@ -2,32 +2,114 @@ enum ActionKind {
     Walking,
     Idle,
     Jumping,
-    DIe
+    DIe,
+    HavalyWakingFly
 }
 namespace SpriteKind {
     export const Empaque = SpriteKind.create()
     export const Martillo = SpriteKind.create()
 }
-scene.onHitTile(SpriteKind.Player, 9, function (sprite) {
-    scene.setTile(9, img`
+function ElPajaroVOlaraYtuNoPorQueNoTienesAlasYElSiYElTeDaSemillasQueTuNoTienes () {
+    animation.setAction(Pajaro, ActionKind.HavalyWakingFly)
+}
+function AnimacionDeArmaDeReparaBotYDeNadieMasDeNadieAbsolubtamenteNadieMas () {
+    animation.setAction(projectile2, ActionKind.DIe)
+}
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile2 = sprites.createProjectileFromSprite(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . c . . . . . . . . . . 
+. . . . . c c . . . . . . . . . 
+. . . . . . c c . . . . . . . . 
+. . . . . . . c c . . . . . . . 
+. . . . . . . c c c c c c . . . 
+. . . . . . . c c . . . c . . . 
+. . . . . . . c . . . . . . . . 
+. . . . . . . c c . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, Hero, 50, 0)
+    controller.moveSprite(projectile2, 0, 0)
+    Animacion3 = animation.createAnimation(ActionKind.DIe, 50)
+    Animacion3.addAnimationFrame(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . c c . . . 
+. . . . . . . . . . c c . . . . 
+. . . c c c c c c c . . . . . . 
+. . . . . . . . . . c c . . . . 
+. . . . . . . . . . . c c . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+    Animacion3.addAnimationFrame(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . c c . . . 
+. . . . . . . . . . c c . . . . 
+. . . . . . c c c c . . . . . . 
+. . . . . . . . . . c c . . . . 
+. . . . . . . . . . . c c . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`, false)
-    music.baDing.play()
+. . . . . . . . . . . . . . . . 
+`)
+    Animacion3.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . c . . . . . . . . . . 
+. . . . . . c . . . . . . . . . 
+. . . . . . c . . . . . . . . . 
+. . . . . . . c . . . . . . . . 
+. . . . . . . c c . . . . . . . 
+. . . . . . . . c c . . . . . . 
+. . . . . . . . . c c c c . . . 
+. . . . . . . . . c c . . . . . 
+. . . . . . . . . c . . . . . . 
+. . . . . . . . . c . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+    Animacion3.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . c c . . . . . . . . 
+. . . c c . c . . . . . . . . . 
+. c c . c c . . . . . . . . . . 
+. . . . . . c . . . . . . . . . 
+. . . . . . c . . . . . . . . . 
+. . . . . . c c . . . . . . . . 
+. . . . . . . c . . . . . . . . 
+. . . . . . . c c c . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+    animation.attachAnimation(projectile2, Animacion3)
+    AnimacionDeArmaDeReparaBotYDeNadieMasDeNadieAbsolubtamenteNadieMas()
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile2 = sprites.createProjectileFromSprite(img`
@@ -195,7 +277,7 @@ e e e e e e e e e e e e e e e e
 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
 `, true)
-    scene.setTile(15, img`
+    scene.setTile(9, img`
 8 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 
 6 6 6 6 6 c c c c c c c c c c a 
 6 6 6 6 c c c b c c c c c c 6 c 
@@ -249,28 +331,31 @@ c c c c c c c c c c c c c c c c
 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 
 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 
 `, true)
-    scene.setTile(9, img`
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 f f f f f f f f f f f f f f 1 
-1 f f f f f f f f f f f f f f 1 
-1 f f f f f f f f f f f f f f 1 
-1 f f f f f f f f f f f f f f 1 
-1 f f f f f f f f f f f f f f 1 
-1 f f f f f f f f f f f f f f 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-. . . . . . . 5 5 5 . . . . . . 
-. . . . . . . 5 5 5 . . . . . . 
-. . . . . . . 5 5 5 . . . . . . 
-. . . . . . . 5 5 5 . . . . . . 
-. . . . . . . 5 5 5 . . . . . . 
-. . . . . . . 5 5 5 . . . . . . 
-. . . . . . . 5 5 5 . . . . . . 
-. . . . . . . 5 5 5 . . . . . . 
+    scene.setTile(15, img`
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `, true)
-    scene.placeOnRandomTile(Hero, 15)
+    scene.placeOnRandomTile(Hero, 9)
 }
 scene.onHitTile(SpriteKind.Player, 12, function (sprite) {
     scene.placeOnRandomTile(Hero, 14)
+})
+scene.onHitTile(SpriteKind.Player, 15, function (sprite) {
+    game.over(false)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     let Plastico: Sprite = null
@@ -284,6 +369,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onHitTile(SpriteKind.Player, 2, function (sprite) {
     SiguienteNivel += 1
     if (SiguienteNivel == levels.length) {
+        game.showLongText("Hiciste TU Mision Pero Esto No Ha Terminado Continuara Este No es mi ultimo mensaje Good Bye.", DialogLayout.Bottom)
         game.over(true)
     } else {
         EmpiezaNivel()
@@ -315,23 +401,191 @@ scene.onHitTile(SpriteKind.Player, 1, function (sprite) {
     Pajaro = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-5 5 5 5 . . . . . . . . . . . . 
-. . . . 5 5 5 5 . . . . . . . . 
-. . . . . . . . 5 5 5 5 5 5 . . 
-. . . . . . . . . . . . . . 5 5 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. f f f f f 9 9 9 9 9 9 9 f . . 
+. f 6 9 f 9 9 9 9 9 9 9 9 f . . 
+. . f 6 9 f 9 9 9 9 9 9 9 f . . 
+. . f 9 6 9 f 9 9 9 1 1 9 f f . 
+f f f f 9 6 9 f 9 9 1 f 9 4 f . 
+f 8 8 f 9 9 6 f 9 9 9 9 4 4 4 4 
+f 8 8 8 f f f 9 9 9 9 4 4 4 4 . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
 `, SpriteKind.Empaque)
     Pajaro.setPosition(14, 22)
     Pajaro.setVelocity(50, 0)
+    Animacion2 = animation.createAnimation(ActionKind.HavalyWakingFly, 50)
+    Animacion2.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. . . . f f 9 9 9 9 9 9 9 f . . 
+. . . . f 9 9 9 9 9 9 9 9 f . . 
+. . . f 6 f 9 9 9 9 9 9 9 f . . 
+. . . f 6 9 f 9 9 9 1 1 9 f f . 
+f f f f 6 6 9 f 9 9 1 f 9 4 f . 
+f 8 8 f 6 9 6 f 9 9 9 9 4 4 4 4 
+f 8 8 8 f f f 9 9 9 9 4 4 4 4 . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
+`)
+    Animacion2.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. . . . f f 9 9 9 9 9 9 9 f . . 
+. . . . f 9 9 9 9 9 9 9 9 f . . 
+. . . f 6 f 9 9 9 9 9 9 9 f . . 
+. . . f 6 9 f 9 9 9 1 1 9 f f . 
+f f f f 6 6 9 f 9 9 1 f 9 4 f . 
+f 8 8 f 6 9 6 f 9 9 9 9 4 4 4 4 
+f 8 8 8 f f f 9 9 9 9 4 4 4 4 . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
+`)
+    Animacion2.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. . . . f f 9 9 9 9 9 9 9 f . . 
+. . . . f 9 9 9 9 9 9 9 9 f . . 
+. . . f 9 9 9 9 9 9 9 9 9 f . . 
+. . . f 9 9 9 9 9 9 1 1 9 f f . 
+f f f f 9 9 f f 9 9 1 f 9 4 f . 
+f 8 8 f f f f 9 9 9 9 9 4 4 4 4 
+f 8 8 8 9 9 9 9 9 9 9 4 4 4 4 . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
+`)
+    Animacion2.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. . . . f f 9 9 9 9 9 9 9 f . . 
+. . . . f 9 9 9 9 9 9 9 9 f . . 
+. . . f 9 9 9 9 9 9 9 9 9 f . . 
+. . . f 9 9 9 9 9 9 1 1 9 f f . 
+f f f f 9 9 f f 9 9 1 f 9 4 f . 
+f 8 8 f f f f 9 9 9 9 9 4 4 4 4 
+f 8 8 8 9 9 9 9 9 9 9 4 4 4 4 . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
+`)
+    Animacion2.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. . . . f f 9 9 9 9 9 9 9 f . . 
+. . . . f 9 9 9 9 9 9 9 9 f . . 
+. . . f 9 9 9 9 9 9 9 9 9 f . . 
+. . . f 6 9 9 9 9 9 1 1 9 f f . 
+f f f f 6 9 9 f 9 9 1 f 9 4 f . 
+f 8 8 f 6 6 9 f f 9 9 9 4 4 4 4 
+f 8 8 8 f 6 6 9 f 9 9 4 4 4 4 . 
+f 8 8 8 f f 6 6 f 9 9 9 9 9 f . 
+f 8 8 8 9 f f f 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
+`)
+    Animacion2.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. . . . f f 9 9 9 9 9 9 9 f . . 
+. . . . f 9 9 9 9 9 9 9 9 f . . 
+. . . f 9 9 9 9 9 9 9 9 9 f . . 
+. . . f 6 9 9 9 9 9 1 1 9 f f . 
+f f f f 6 9 9 f 9 9 1 f 9 4 f . 
+f 8 8 f 6 6 9 f f 9 9 9 4 4 4 4 
+f 8 8 8 f 6 6 9 f 9 9 4 4 4 4 . 
+f 8 8 8 f f 6 6 f 9 9 9 9 9 f . 
+f 8 8 8 9 f f f 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
+`)
+    Animacion2.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. . . . f f 9 9 9 9 9 9 9 f . . 
+. . . . f 9 9 9 9 9 9 9 9 f . . 
+. . . f 9 9 9 9 9 9 9 9 9 f . . 
+. . . f 9 9 9 9 9 9 1 1 9 f f . 
+f f f f 9 9 f f 9 9 1 f 9 4 f . 
+f 8 8 f f f f 9 9 9 9 9 4 4 4 4 
+f 8 8 8 9 9 9 9 9 9 9 4 4 4 4 . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
+`)
+    Animacion2.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. f f f f f 9 9 9 9 9 9 9 f . . 
+. f 6 9 f 9 9 9 9 9 9 9 9 f . . 
+. . f 6 9 f 9 9 9 9 9 9 9 f . . 
+. . f 9 6 9 f 9 9 9 1 1 9 f f . 
+f f f f 9 6 9 f 9 9 1 f 9 4 f . 
+f 8 8 f 9 9 6 f 9 9 9 9 4 4 4 4 
+f 8 8 8 f f f 9 9 9 9 4 4 4 4 . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
+`)
+    Animacion2.addAnimationFrame(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f f f . . . . 
+. . . . . f f 9 9 9 9 f f f . . 
+. f f f f f 9 9 9 9 9 9 9 f . . 
+. f 6 9 f 9 9 9 9 9 9 9 9 f . . 
+. . f 6 9 f 9 9 9 9 9 9 9 f . . 
+. . f 9 6 9 f 9 9 9 1 1 9 f f . 
+f f f f 9 6 9 f 9 9 1 f 9 4 f . 
+f 8 8 f 9 9 6 f 9 9 9 9 4 4 4 4 
+f 8 8 8 f f f 9 9 9 9 4 4 4 4 . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f 8 8 8 9 9 9 9 9 9 9 9 9 9 f . 
+f f 8 9 9 9 9 9 9 9 9 9 9 f f . 
+. f f f f 4 f f f 4 f f f f . . 
+. . . . . 4 4 4 . 4 4 4 . . . . 
+`)
+    animation.attachAnimation(Pajaro, Animacion2)
+    ElPajaroVOlaraYtuNoPorQueNoTienesAlasYElSiYElTeDaSemillasQueTuNoTienes()
+})
+scene.onHitTile(SpriteKind.Empaque, 9, function (sprite) {
+    Pajaro.destroy()
 })
 controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.setAction(Hero, ActionKind.Walking)
@@ -340,11 +594,14 @@ controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onHitTile(SpriteKind.Player, 4, function (sprite) {
     scene.placeOnRandomTile(Hero, 12)
 })
-let Pajaro: Sprite = null
+let Animacion2: animation.Animation = null
+let Animacion3: animation.Animation = null
 let projectile2: Sprite = null
+let Pajaro: Sprite = null
 let levels: Image[] = []
 let SiguienteNivel = 0
 let Hero: Sprite = null
+scene.setBackgroundColor(9)
 scene.setBackgroundImage(img`
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 1 f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 1 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 1 f f f f 1 1 1 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
@@ -1102,8 +1359,8 @@ Hero = sprites.create(img`
 . . . . b b b b b b b . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
-let Animacion = animation.createAnimation(ActionKind.Walking, 50)
-Animacion.addAnimationFrame(img`
+let Animacion1 = animation.createAnimation(ActionKind.Walking, 50)
+Animacion1.addAnimationFrame(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . 2 2 2 . . . . . . . 
 . . . . . . . b . . . . . . . . 
@@ -1121,7 +1378,7 @@ Animacion.addAnimationFrame(img`
 . . . . b b b c b b b . . . . . 
 . . . . . . . . . . . . . . . . 
 `)
-Animacion.addAnimationFrame(img`
+Animacion1.addAnimationFrame(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . 2 2 . . . . . . . 
 . . . . . . . b . . . . . . . . 
@@ -1139,7 +1396,7 @@ Animacion.addAnimationFrame(img`
 . . . . b c b b b b b . . . . . 
 . . . . . . . . . . . . . . . . 
 `)
-Animacion.addAnimationFrame(img`
+Animacion1.addAnimationFrame(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . 2 . . . . . . . . 
 . . . . . . . b . . . . . . . . 
@@ -1157,7 +1414,7 @@ Animacion.addAnimationFrame(img`
 . . . . b c b b b b b . . . . . 
 . . . . . . . . . . . . . . . . 
 `)
-Animacion.addAnimationFrame(img`
+Animacion1.addAnimationFrame(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . 2 2 . . . . . . . . 
 . . . . . . . b . . . . . . . . 
@@ -1175,7 +1432,7 @@ Animacion.addAnimationFrame(img`
 . . . . b b b b b c b . . . . . 
 . . . . . . . . . . . . . . . . 
 `)
-Animacion.addAnimationFrame(img`
+Animacion1.addAnimationFrame(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . 2 . . . . . . . . 
 . . . . . . . b . . . . . . . . 
@@ -1193,7 +1450,7 @@ Animacion.addAnimationFrame(img`
 . . . . b c b b b b b . . . . . 
 . . . . . . . . . . . . . . . . 
 `)
-Animacion.addAnimationFrame(img`
+Animacion1.addAnimationFrame(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . 2 2 . . . . . . . 
 . . . . . . . b . . . . . . . . 
@@ -1211,7 +1468,7 @@ Animacion.addAnimationFrame(img`
 . . . . b b b b b b b . . . . . 
 . . . . . . . . . . . . . . . . 
 `)
-Animacion.addAnimationFrame(img`
+Animacion1.addAnimationFrame(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . 2 2 2 . . . . . . . 
 . . . . . . . b . . . . . . . . 
@@ -1229,38 +1486,20 @@ Animacion.addAnimationFrame(img`
 . . . . b b b b b c b . . . . . 
 . . . . . . . . . . . . . . . . 
 `)
-animation.attachAnimation(Hero, Animacion)
+animation.attachAnimation(Hero, Animacion1)
 Hero.ay = 350
 info.setLife(5)
 scene.cameraFollowSprite(Hero)
 SiguienteNivel = 0
 levels = [img`
-. . . . . . . . . f . . . . . . . . . . . . . d . . . . . d . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . d . . . . d d . . . . . . . . . . . . . . . . . . . . 
-. . . . . d . . . . . . . . . . . . . . . . . d d d . . d d . . . . . . . d d . . . . . . . d . . . 
-. . . . . d . . . . . . . . . . . . . . d . . d d d d . d d . . . . . d . d d . . . . d . . d . . . 
-. . . . d d . . . . d . . . . . . . . . d . . d d d d d d d . . . . . d d d d . . . . d d . d . . . 
-. . . d d d . . . . d d d . . . . . . d d . . d d d d d d d . . . . . d d d d . 1 . . d d d d . . 2 
-. . . d d d . . . . d d d . . d . . . d d . . d d d d d d d . . . . . d d d d . . . . d d d d . . . 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-`, img`
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . d d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 
-. . . d d d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-f . . d d d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-`, img`
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . d d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 
-. . . d d d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-f . . d d d . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+. . . . . . . . . . . . . . . . . . . . . . . d . . . . . d . . . . . . . . . . . . . . . . . . . 9 
+. . . . . . . . . . . . . . . . . . . . . . . d . . . . d d . . . . . . . . . . . . . . . . . . . 9 
+. . . . . d . . . . . . . . . . . . 7 . . . . d d d . . d d . . . . . . . d d . . . . . . . d . . 9 
+. 9 . . . d . . . . . . . . . . 7 . . . d . . d d d d . d d . . . . . d . d d . . . . d . . d . . 9 
+. . . . d d . . 7 7 d . . . 7 . . . . . 7 7 7 d d d d d d d . 7 7 7 7 7 d d d . . . . d d . d . . 9 
+. . . d 7 7 7 . . . d 7 7 . . . . . . d d . . 7 7 7 d d d 7 . 7 . . . d d 7 d . 1 . . d d d d . . 2 
+. . . d d d . . . . d d d . . d . . . d d . . d d d d d d d . . . . . d d d d . . . . d d d d . . 9 
+7 7 7 7 7 7 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
 `]
 EmpiezaNivel()
 controller.moveSprite(Hero, 100, 0)
